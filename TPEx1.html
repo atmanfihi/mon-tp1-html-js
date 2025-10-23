@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
 </head>
 <body>
     
@@ -67,15 +68,107 @@ function initialiser() {
 }
 
 function corrige() {
-    let win = window.open("", "corrige", "width=600,height=600");
-    win.document.write("<h2>Corrigé du QCM</h2>");
+    var win = window.open("", "corrige", "width=760,height=760");
+    win.document.write("<h2>corrige du QCM</h2>");
     // q est accessible que dans le bloc de for in
     for (let q in corrections) {
         win.document.write("<h4>" + q + " : " + corrections[q] + "</h4>");
     }
 }
+function resultat() {
+    var score = 0;
+    var total = 5;
+    var win2 = window.open("", "resultat", "width=760,height=760");
+    win2.document.write("<h2>resultat du QCM</h2>");
+var q1Boxes = document.getElementsByName("q1");
+var q1Correct = false;
+for (var i = 0; i < q1Boxes.length; i++) {
+    if (q1Boxes[i].checked) {
+        if (q1Boxes[i].value == reponses.q1) {
+            q1Correct = true;
+        } else {
+            q1Correct = false;
+            break;
+        }
+    }
+}
+if (q1Correct) {
+    score++;
+    win2.document.write("<p style='color:green;'>Q1 : correcte </p>");
+} else {
+    win2.document.write("<p style='color:red;'>Q1 : incorrecte </p>");
+}
+    var q2Boxes = document.getElementsByName("q2");
+    var q2Correct = false;
+    for (var i = 0; i < q2Boxes.length; i++) {
+        if (q2Boxes[i].checked) {
+            if (q2Boxes[i].value == reponses.q2) {
+                q2Correct = true;
+            } else {
+                q2Correct = false;
+                break;
+            }
+        }
+    }
+    if (q2Correct) {
+        score++;
+        win2.document.write("<p style='color:green;'>Q2 : correcte </p>");
+    } else {
+        win2.document.write("<p style='color:red;'>Q2 : incorrecte </p>");
+    }
+        var q3Boxes = document.getElementsByName("q3");
+    var q3Correct = false;
+    for (var i = 0; i < q3Boxes.length; i++) {
+        if (q3Boxes[i].checked) {
+            if (q3Boxes[i].value == reponses.q3) {
+                q3Correct = true;
+            } else {
+                q3Correct = false;
+                break;
+            }
+        }
+    }
+    if (q3Correct) {
+        score++;
+        win2.document.write("<p style='color:green;'>Q3 : correcte </p>");
+    } else {
+        win2.document.write("<p style='color:red;'>Q3 : incorrecte </p>");
+    }
+    var q4Boxes = document.getElementsByName("q4");
+var q4Correct = true;
+for (var i = 0; i < q4Boxes.length; i++) {
+    var found = false;
+    for (var j = 0; j < reponses.q4.length; j++) {
+        if (q4Boxes[i].value == reponses.q4[j]) found = true;
+    }
+    if ((q4Boxes[i].checked && !found) || (!q4Boxes[i].checked && found)) {
+        q4Correct = false;
+        break;
+    }
+}
+if (q4Correct) {
+    score++;
+    win2.document.write("<p style='color:green;'>Q4 : correcte </p>");
+} else {
+    win2.document.write("<p style='color:red;'>Q4 : incorrecte </p>");
+}
+var q5Boxes = document.getElementsByName("q5");
+var q5Correct = false;
+for (var i = 0; i < q5Boxes.length; i++) {
+    if (q5Boxes[i].checked && q5Boxes[i].value == reponses.q5) {
+        q5Correct = true;
+        break;
+    }
+}
+if (q5Correct) {
+    score++;
+    win2.document.write("<p style='color:green;'>Q5 : correcte </p>");
+} else {
+    win2.document.write("<p style='color:red;'>Q5 : incorrecte </p>");
+}
+win2.document.write("<h3>Score final : " + score + " / " + total + "</h3>");
+win2.document.close();
+}
 </script>
-
-
 </body>
 </html>
